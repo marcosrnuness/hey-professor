@@ -18,7 +18,7 @@ class QuestionController extends Controller
                     if ($value[strlen($value) - 1] !== '?') {
                         $fail("Are you sure that is a question? It is missing the question mark in the end.");
                     }
-                }
+                },
             ],
         ]);
 
