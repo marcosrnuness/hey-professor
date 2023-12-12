@@ -9,7 +9,7 @@ if [ $? -ne 0 ]; then
 fi
 
 # Rodar os teste
-php artisan test --without-tty --parallel
+php artisan test --parallel
 if [ $? -ne 0 ]; then
     echo "Opss... deu erro em algum teste, corrija antes de continuar!!! 😉"
     exit 1;
