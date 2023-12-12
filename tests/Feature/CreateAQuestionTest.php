@@ -1,10 +1,8 @@
 <?php
 
 use App\Models\User;
-use function Pest\Laravel\actingAs;
-use function Pest\Laravel\assertDatabaseCount;
-use function Pest\Laravel\assertDatabaseHas;
-use function Pest\Laravel\post;
+
+use function Pest\Laravel\{actingAs, assertDatabaseCount, assertDatabaseHas, post};
 
 it('should be able to create a new question bigger than 255 characters', function () {
     // Arrange | Preparar
@@ -36,7 +34,7 @@ it('should check if ends woth question mark?', function () {
 
     // Assert | Verificar
     $request->assertSessionHasErrors([
-        'question' => 'Are you sure that is a question? It is missing the question mark in the end.'
+        'question' => 'Are you sure that is a question? It is missing the question mark in the end.',
     ]);
     assertDatabaseCount('questions', 0);
 });
