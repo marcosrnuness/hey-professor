@@ -1,10 +1,12 @@
 <?php
 
-use App\Http\Controllers\{DashboardController,
+use App\Http\Controllers\{
+    DashboardController,
     ProfileController,
+    QuestionController,
     Question\LikeController,
-    Question\UnlikeController,
-    QuestionController};
+    Question\UnlikeController
+};
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
