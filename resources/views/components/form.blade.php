@@ -5,7 +5,7 @@
     'delete' => null,
 ])
 
-<form class="mx-auto" action="{{ $action }}" method="POST">
+<form class="mx-auto" action="{{ $action }}" method="POST" {{ $attributes }}>
     @csrf
 
     @if($put)
