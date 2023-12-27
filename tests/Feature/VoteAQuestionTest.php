@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\{Question, User};
+
 use function Pest\Laravel\{actingAs, assertDatabaseHas, post};
 
 it('should be able to like a question', function () {
@@ -15,9 +16,9 @@ it('should be able to like a question', function () {
 
     assertDatabaseHas('votes', [
         'question_id' => $question->id,
-        'like' => 1,
-        'unlike' => 0,
-        'user_id' => $user->id,
+        'like'        => 1,
+        'unlike'      => 0,
+        'user_id'     => $user->id,
     ]);
 });
 
@@ -49,9 +50,9 @@ it('should be able to unlike a question', function () {
 
     assertDatabaseHas('votes', [
         'question_id' => $question->id,
-        'like' => 0,
-        'unlike' => 1,
-        'user_id' => $user->id,
+        'like'        => 0,
+        'unlike'      => 1,
+        'user_id'     => $user->id,
     ]);
 });
 

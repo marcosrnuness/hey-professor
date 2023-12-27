@@ -22,6 +22,23 @@ it('should be able to create a new question bigger than 255 characters', functio
     ]);
 });
 
+it('should create as a draft all the time', function () {
+    // Arrange | Preparar
+    $user = User::factory()->create();
+    actingAs($user);
+
+    // Act | Agir
+    $request = post(route('question.store'), [
+        'question' => str_repeat('*', 260) . '?',
+    ]);
+
+    // Assert | Verificar
+    assertDatabaseHas('questions', [
+        'question' => str_repeat('*', 260) . '?',
+        'draft'    => true,
+    ]);
+});
+
 it('should check if ends woth question mark?', function () {
     // Arrange | Preparar
     $user = User::factory()->create();
