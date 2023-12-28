@@ -10,6 +10,9 @@ class PublishController extends Controller
 {
     public function __invoke(Question $question): RedirectResponse
     {
+        $this->authorize('publish', $question);
+        // abort_unless(user()->can('publish', $question), Response::HTTP_FORBIDDEN);
+
         $question->update(['draft' => false]);
 
         return back();
