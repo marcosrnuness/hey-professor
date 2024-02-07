@@ -7,6 +7,13 @@ use Illuminate\Http\RedirectResponse;
 
 class QuestionController extends Controller
 {
+    public function index()
+    {
+        return view('question.index', [
+            'questions' => user()->questions,
+        ]);
+    }
+
     public function store(): RedirectResponse
     {
         $attributes = request()->validate([
@@ -25,6 +32,6 @@ class QuestionController extends Controller
             array_merge($attributes, ['draft' => true])
         );
 
-        return to_route('dashboard');
+        return back();
     }
 }
