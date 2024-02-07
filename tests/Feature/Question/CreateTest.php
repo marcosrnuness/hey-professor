@@ -35,7 +35,7 @@ it('should create as a draft all the time', function () {
     // Assert | Verificar
     assertDatabaseHas('questions', [
         'question' => str_repeat('*', 260) . '?',
-        'draft'    => true,
+        'draft' => true,
     ]);
 });
 
@@ -69,4 +69,10 @@ it('should have at least 10 characters', function () {
     // Assert | Verificar
     $request->assertSessionHasErrors(['question' => __('validation.min.string', ['min' => 10, 'attribute' => 'question'])]);
     assertDatabaseCount('questions', 0);
+});
+
+test('only authenticated users can create a new question', function () {
+    post(route('question.store'), [
+        'question' => str_repeat('*', 8) . '?',
+    ])->assertRedirect(route('login'));
 });
