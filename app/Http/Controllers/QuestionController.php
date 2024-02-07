@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Question;
 use Closure;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 
 class QuestionController extends Controller
 {
-    public function index()
+    public function index(): View
     {
         return view('question.index', [
             'questions' => user()->questions,
@@ -31,6 +33,15 @@ class QuestionController extends Controller
         user()->questions()->create(
             array_merge($attributes, ['draft' => true])
         );
+
+        return back();
+    }
+
+    public function destroy(Question $question): RedirectResponse
+    {
+        $this->authorize('destroy', $question);
+
+        $question->delete();
 
         return back();
     }
